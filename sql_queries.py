@@ -70,20 +70,20 @@ SELECT e.ts2,e.userid,e.level,s.song_id,s.artist_id, e.sessionid,e.location,e.us
 """)
 
 user_table_insert = (""" INSERT INTO users(user_id, first_name, last_name , gender, level)
-                        SELECT e.userid,e.firstname,e.lastname,e.gender,e.level FROM staging_events e
+                        SELECT DISTINCT e.userid,e.firstname,e.lastname,e.gender,e.level FROM staging_events e
                         WHERE  e.page = 'NextSong';
 """)
 
 song_table_insert = (""" INSERT INTO songs(song_id, title, artist_id , year, duration)
-                        SELECT s.song_id,s.title,s.artist_id,s.year,s.duration FROM staging_songs s;
+                        SELECT DISTINCT s.song_id,s.title,s.artist_id,s.year,s.duration FROM staging_songs s;
                         """)
 
 artist_table_insert = (""" INSERT INTO artists(artist_id, name , location , latitude , longitude )
-                        SELECT s.artist_id,s.artist_name,s.artist_location,s.artist_latitude,s.artist_longitude FROM staging_songs s;
+                        SELECT DISTINCT s.artist_id,s.artist_name,s.artist_location,s.artist_latitude,s.artist_longitude FROM staging_songs s;
                         """)
 
 time_table_insert = (""" INSERT INTO time(start_time, hour, day, week, month, year, weekday)
-                        SELECT e.ts2,EXTRACT(HOUR FROM e.ts2),EXTRACT(DAY FROM e.ts2),EXTRACT(WEEK FROM e.ts2),EXTRACT(MONTH FROM e.ts2),EXTRACT(YEAR FROM e.ts2),EXTRACT(DOW FROM e.ts2) FROM staging_events e
+                        SELECT DISTINCT e.ts2,EXTRACT(HOUR FROM e.ts2),EXTRACT(DAY FROM e.ts2),EXTRACT(WEEK FROM e.ts2),EXTRACT(MONTH FROM e.ts2),EXTRACT(YEAR FROM e.ts2),EXTRACT(DOW FROM e.ts2) FROM staging_events e
                         WHERE  e.page = 'NextSong';
 """)
 #other method  for extracting timespots from timestamp-->https://stackoverflow.com/questions/59911560/how-can-i-extract-a-weekday-from-a-timestamp-in-postgresql
