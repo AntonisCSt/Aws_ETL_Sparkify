@@ -38,8 +38,3 @@ README.md provides discussion on your project.
 ![alt text](Schema_sql.png)
 
 
-Please keep your questions succinct and clear to help the reviewer answer them satisfactorily. 
-
-
-## OPTIONAL: Question for the reviewer
-> **Question: How can I make the staging of the events table go faster?**
