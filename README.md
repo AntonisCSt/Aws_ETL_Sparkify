@@ -14,7 +14,7 @@
 #### Well its easy!
 ##### 0) Create a redshift cluster and add to dwh.cfg the appropriate fields for connecting it to our S3 bucket
 ##### 1) Create the tables by running create_tables.py
-##### 2) Create the starch schema database by running etl.py
+##### 2) Create the star schema database by running etl.py
 
  
 ### Code Description:
