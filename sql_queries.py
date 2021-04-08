@@ -90,11 +90,11 @@ time_table_insert = (""" INSERT INTO time(start_time, hour, day, week, month, ye
 
 # ANALYTICAL QUERIES
 
-#anal_query_1 =(""" SELECT * FROM songplays LIMIT 10
-#""")
+anal_query_1 =(""" SELECT * FROM songplays LIMIT 10
+""")
 
-#anal_query_2 = (""" SELECT * FROM time LIMIT 10
-#""")
+anal_query_2 = (""" SELECT songs.title, songs.duration FROM songs LIMIT 10
+""")
 
 anal_query_3  = (""" SELECT songs.title, artists.name 
                    FROM songs
@@ -117,6 +117,6 @@ drop_table_queries = [staging_events_table_drop, staging_songs_table_drop, songp
 copy_table_queries = [staging_events_copy, staging_songs_copy]
 #copy_table_queries = [staging_events_copy]
 insert_table_queries = [songplay_table_insert, user_table_insert, song_table_insert, artist_table_insert, time_table_insert]
-analytical_queries = [anal_query_3]
+analytical_queries = [anal_query_1, anal_query_2,anal_query_3]
 transform_queries = [transform_query_1,transform_query_2,transform_query_3]
 
